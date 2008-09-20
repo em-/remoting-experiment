@@ -23,12 +23,13 @@ public class RemotingExperiment
 
     public static int Run()
     {
-        Remoting helper = new Remoting();
-        helper.Start("RemotingHelper.exe", helper.SocketPath);
-        DoSomething doSomething = helper.Get<DoSomething>();
-        doSomething.PrepareYourself();
-        doSomething.SetThingsUp();
-        doSomething.Go();
+        using(Remoting helper = new Remoting()) {
+            helper.Start("RemotingHelper.exe", helper.SocketPath);
+            DoSomething doSomething = helper.Get<DoSomething>();
+            doSomething.PrepareYourself();
+            doSomething.SetThingsUp();
+            doSomething.Go();
+        }
         return 0;
     }
 

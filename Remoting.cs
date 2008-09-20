@@ -18,7 +18,7 @@ using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using Mono.Remoting.Channels.Unix;
 
-public class Remoting {
+public class Remoting : IDisposable {
     private Process mProcess;
     
     public string SocketPath {get; private set;}
@@ -30,8 +30,33 @@ public class Remoting {
 
     ~Remoting()
     {
-        Cleanup();
+        Dispose(false);
     }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private void Dispose(bool disposing)
+    {
+        Console.WriteLine(disposing);
+        if(disposing)
+        {
+            try {
+               mProcess.Kill();
+            } catch {}
+            mProcess.Dispose();
+            mProcess = null;
+        }
+
+        try {
+           File.Delete(SocketPath);
+        } catch {}
+        SocketPath = null;
+    }
+
 
     public void Start(string helper, string param)
     {
