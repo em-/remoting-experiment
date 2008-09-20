@@ -42,9 +42,6 @@ public class RemotingExperiment
     public static TimeSpan Do(DoSomething doSomething)
     {
         DateTime start = DateTime.Now;
-        doSomething.PrepareYourself();
-        doSomething.SetThingsUp();
-        doSomething.Go();
         while(!doSomething.HaveYouFinished()) {
             object[] results = doSomething.WhatsUp();
             // just to say that whe use the results
