@@ -23,19 +23,19 @@ public class RemotingExperiment
 
     public static int Run()
     {
-        using(Remoting helper = new Remoting()) {
-            DoSomething doSomething;
-            TimeSpan time;
+        DoSomething doSomething;
+        TimeSpan time;
 
+        using(Remoting helper = new Remoting()) {
             helper.Start("RemotingHelper.exe", helper.SocketPath);
             doSomething = helper.Get<DoSomething>();
             time = Do(doSomething);
             Console.WriteLine("Elapsed (remote): {0}", time);
-
-            doSomething = new DoSomething();
-            time = Do(doSomething);
-            Console.WriteLine("Elapsed (local): {0}", time);
         }
+
+        doSomething = new DoSomething();
+        time = Do(doSomething);
+        Console.WriteLine("Elapsed (local): {0}", time);
         return 0;
     }
 
