@@ -29,6 +29,11 @@ public class RemotingExperiment
             doSomething.PrepareYourself();
             doSomething.SetThingsUp();
             doSomething.Go();
+            while(!doSomething.HaveYouFinished()) {
+                object[] results = doSomething.WhatsUp();
+                // just to say that whe use the results
+                results.ToString();
+            }
         }
         return 0;
     }

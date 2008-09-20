@@ -13,6 +13,8 @@ using System.Runtime.Remoting;
 
 public class DoSomething : MarshalByRefObject
 {
+    private int mCount = 0;
+
     public void PrepareYourself()
     {
         Console.WriteLine("ready");
@@ -30,12 +32,19 @@ public class DoSomething : MarshalByRefObject
 
     public bool HaveYouFinished()
     {
-        return false;
+        return mCount++ > 30000;
     }
 
     public object[] WhatsUp()
     {
-        object[] values = new object[] {};
+        object[] values = new object[] {
+            "42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42",
+            (int) 42,
+            (decimal) 42.0,
+            (long) 42,
+            (double) 42,
+            (float) 42
+        };
         return values;
     }
 }
