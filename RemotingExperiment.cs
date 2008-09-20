@@ -31,6 +31,10 @@ public class RemotingExperiment
             doSomething = helper.Get<DoSomething>();
             time = Do(doSomething);
             Console.WriteLine("Elapsed (remote): {0}", time);
+
+            doSomething = new DoSomething();
+            time = Do(doSomething);
+            Console.WriteLine("Elapsed (local): {0}", time);
         }
         return 0;
     }
