@@ -41,7 +41,6 @@ public class Remoting : IDisposable {
 
     private void Dispose(bool disposing)
     {
-        Console.WriteLine(disposing);
         if(disposing)
         {
             try {
