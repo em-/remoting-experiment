@@ -25,6 +25,7 @@ public class RemotingExperiment
     {
         using(Remoting helper = new Remoting()) {
             helper.Start("RemotingHelper.exe", helper.SocketPath);
+            DateTime start = DateTime.Now;
             DoSomething doSomething = helper.Get<DoSomething>();
             doSomething.PrepareYourself();
             doSomething.SetThingsUp();
@@ -34,6 +35,8 @@ public class RemotingExperiment
                 // just to say that whe use the results
                 results.ToString();
             }
+            DateTime end = DateTime.Now;
+            Console.WriteLine("Elapsed: {0}", end - start);
         }
         return 0;
     }
