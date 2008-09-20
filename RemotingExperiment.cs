@@ -24,21 +24,30 @@ public class RemotingExperiment
     public static int Run()
     {
         using(Remoting helper = new Remoting()) {
+            DoSomething doSomething;
+            TimeSpan time;
+
             helper.Start("RemotingHelper.exe", helper.SocketPath);
-            DateTime start = DateTime.Now;
-            DoSomething doSomething = helper.Get<DoSomething>();
-            doSomething.PrepareYourself();
-            doSomething.SetThingsUp();
-            doSomething.Go();
-            while(!doSomething.HaveYouFinished()) {
-                object[] results = doSomething.WhatsUp();
-                // just to say that whe use the results
-                results.ToString();
-            }
-            DateTime end = DateTime.Now;
-            Console.WriteLine("Elapsed: {0}", end - start);
+            doSomething = helper.Get<DoSomething>();
+            time = Do(doSomething);
+            Console.WriteLine("Elapsed (remote): {0}", time);
         }
         return 0;
+    }
+
+    public static TimeSpan Do(DoSomething doSomething)
+    {
+        DateTime start = DateTime.Now;
+        doSomething.PrepareYourself();
+        doSomething.SetThingsUp();
+        doSomething.Go();
+        while(!doSomething.HaveYouFinished()) {
+            object[] results = doSomething.WhatsUp();
+            // just to say that whe use the results
+            results.ToString();
+        }
+        DateTime end = DateTime.Now;
+        return end - start;
     }
 
     public static int Help()
