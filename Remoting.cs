@@ -63,17 +63,6 @@ public class Remoting : IDisposable {
         Thread.Sleep(250);
     }
     
-    public void Cleanup()
-    {
-        try {
-           mProcess.Kill();
-        } catch {}
-
-        try {
-           File.Delete(SocketPath);
-        } catch {}
-    }
-
     public T Get<T>()
     {
         Hashtable props = new Hashtable();
