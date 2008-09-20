@@ -26,13 +26,15 @@ public class RemotingExperiment
         DoSomething doSomething;
         TimeSpan time;
 
+        Console.WriteLine("Measuring remote");
         using(Remoting helper = new Remoting()) {
             helper.Start("RemotingHelper.exe", helper.SocketPath);
             doSomething = helper.Get<DoSomething>();
             time = Do(doSomething);
-            Console.WriteLine("Elapsed (remote): {0}", time);
         }
+        Console.WriteLine("Elapsed (remote): {0}", time);
 
+        Console.WriteLine("Measuring local");
         doSomething = new DoSomething();
         time = Do(doSomething);
         Console.WriteLine("Elapsed (local): {0}", time);
