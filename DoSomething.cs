@@ -15,14 +15,17 @@ public class DoSomething : MarshalByRefObject
 {
     public void PrepareYourself()
     {
+        Console.WriteLine("ready");
     }
     
     public void SetThingsUp()
     {
+        Console.WriteLine("set");
     }
     
     public void Go()
     {
+        Console.WriteLine("go");
     }
 
     public bool HaveYouFinished()

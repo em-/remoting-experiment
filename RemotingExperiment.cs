@@ -26,6 +26,9 @@ public class RemotingExperiment
         Remoting helper = new Remoting();
         helper.Start("RemotingHelper.exe", helper.SocketPath);
         DoSomething doSomething = helper.Get<DoSomething>();
+        doSomething.PrepareYourself();
+        doSomething.SetThingsUp();
+        doSomething.Go();
         return 0;
     }
 
