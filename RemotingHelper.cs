@@ -26,7 +26,8 @@ public class RemotingHelper
         DoSomething self = new DoSomething();
         Remoting.Publish(socketPath, self);
 
-        while(true) Thread.Sleep(10000);
+        Thread.Sleep(Timeout.Infinite);
+        return 0;
     }
 
     public static int Help()
